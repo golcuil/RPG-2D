@@ -15,10 +15,12 @@ public class PlayerPrimaryAttack : PlayerState
     public override void Enter()
     {
         base.Enter();
+        xInput = 0; // Need this to fix bug on attack direction
+
         if (comboCounter > 2 || Time.time >= lastTimeAttacked + comboWindow)
             comboCounter = 0;
 
-        player.playerAnimator.SetInteger("ComboCounter", comboCounter);
+        player.anim.SetInteger("ComboCounter", comboCounter);
 
         float attackDirection = player.facingDirection;
         if (xInput != 0)
